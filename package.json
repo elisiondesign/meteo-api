@@ -26,6 +26,8 @@
   },
   "homepage": "https://github.com/elisiondesign/meteo-api#readme",
   "dependencies": {
+    "@types/express": "^4.16.1",
+    "express": "^4.16.4",
     "typescript": "^3.3.3333"
   },
   "devDependencies": {
