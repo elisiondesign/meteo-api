@@ -1,0 +1,34 @@
+{
+  "name": "meteo-api",
+  "version": "1.0.0",
+  "description": "Meteo API example app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpileOnly ./app/app.ts",
+    "prod": "tsc && node ./build/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elisiondesign/meteo-api.git"
+  },
+  "keywords": [
+    "api",
+    "example",
+    "nodejs",
+    "rest",
+    "mysql"
+  ],
+  "author": "elision.design",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elisiondesign/meteo-api/issues"
+  },
+  "homepage": "https://github.com/elisiondesign/meteo-api#readme",
+  "dependencies": {
+    "typescript": "^3.3.3333"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0-pre.32"
+  }
+}
