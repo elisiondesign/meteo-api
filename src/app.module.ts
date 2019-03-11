@@ -1,13 +1,15 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './controllers/app.controller';
-import { AppService } from './services/app.service';
-import {TypeOrmModule} from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { MeteoStationService } from './services/meteo-station.service';
+import { MeteoStation } from './entities/meteo-station.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot() // See ormconfig.json
+    TypeOrmModule.forRoot(),
+    TypeOrmModule.forFeature([MeteoStation])// See ormconfig.json
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [MeteoStationService],
 })
-export class AppModule {}
+export class AppModule { }

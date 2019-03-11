@@ -1,12 +1,15 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from '../services/app.service';
+import { MeteoStationService } from '../services/meteo-station.service';
+import { stat } from 'fs';
+import { MeteoStation } from 'src/entities/meteo-station.entity';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly meteoService: MeteoStationService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  async getHello(): Promise<MeteoStation[]> {
+    const stations = await this.meteoService.findAll();
+    return stations;
   }
 }
