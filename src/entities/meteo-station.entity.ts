@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, Index } from 'typeorm';
-
+import { Point } from '@/models/point.model';
 @Entity("meteo_stations")
 export class MeteoStation {
     @PrimaryGeneratedColumn()
@@ -15,6 +15,8 @@ export class MeteoStation {
     lat: number;
 
     @Column()
-    lng: number;        
+    lng: number;
+
+    location: Point;
 
 }
