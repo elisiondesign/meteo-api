@@ -19,8 +19,8 @@ export class MeteoStationService {
     async findNearest(): Promise<MeteoStation[]>{
         return await this.stationRepository.findByIds([1]);
     }
-    async rawQuery(): Promise<any>{
-        return await this.em.query('select * from meteo_stations where ST_Distance_Sphere(location,ST_SRID(POINT(50.0000,14.35000),4326)) < 10000;');
+    async rawQuery(): Promise<MeteoStation[]>{
+        return await this.em.query('select * from meteo_stations where ST_Distance_Sphere(location,ST_SRID(POINT(50.0000,14.35000),4326)) < 10000;') as MeteoStation[];
         
     }
 

@@ -17,7 +17,7 @@ export class AppController {
     return await this.meteoService.findNearest();
   }
   @Get("raw")
-  async getRaw(): Promise<any>{
+  async getRaw(): Promise<MeteoStation[]>{
     return await this.meteoService.rawQuery();
   }
 }
