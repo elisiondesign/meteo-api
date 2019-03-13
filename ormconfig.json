@@ -8,5 +8,6 @@
         "src/**/**.entity{.ts,.js}"
     ],
     "database": "meteo-api",
-    "sync": true
+    "sync": false,
+    "logging": true
 }

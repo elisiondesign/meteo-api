@@ -12,4 +12,12 @@ export class AppController {
     const stations = await this.meteoService.findAll();
     return stations;
   }
+  @Get("nearest")
+  async getNearest(): Promise<MeteoStation[]>{
+    return await this.meteoService.findNearest();
+  }
+  @Get("raw")
+  async getRaw(): Promise<any>{
+    return await this.meteoService.rawQuery();
+  }
 }

@@ -1,19 +1,20 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, Index } from 'typeorm';
 
 @Entity("meteo_stations")
 export class MeteoStation {
     @PrimaryGeneratedColumn()
-    id: Number;
+    id: number;
 
     @Column()
-    name: String;
+    name: string;
 
     @Column()
-    technology: String;
+    technology: string;
 
     @Column()
-    lat: Number;
+    lat: number;
 
     @Column()
-    lng: Number;    
+    lng: number;        
+
 }
