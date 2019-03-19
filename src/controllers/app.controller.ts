@@ -1,6 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
 import { MeteoStationService } from '../services/meteo-station.service';
-import { stat } from 'fs';
 import { MeteoStation } from 'src/entities/meteo-station.entity';
 
 @Controller()
@@ -8,8 +7,8 @@ export class AppController {
   constructor(private readonly meteoService: MeteoStationService) {}
 
   @Get()
-  async getHello(): Promise<MeteoStation[]> {
-    const stations = await this.meteoService.findAll();
+  async getHello(@Req() request): Promise<MeteoStation[]> {
+    const stations = await this.meteoService.findAll();    
     return stations;
   }
   @Get("nearest")
