@@ -1,5 +1,5 @@
 import { Injectable, HttpService } from '@nestjs/common';
-import { Point } from '@/models/point.model';
+import { Coordinates } from '@/models/coordinates.model';
 
 @Injectable()
 export class GeoLocateService {
@@ -7,13 +7,14 @@ export class GeoLocateService {
         private readonly http: HttpService,
     ) { }
 
-    async locateIp(ip: string = ''): Promise<Point> {
+    async locateIp(ip: string = ''): Promise<Coordinates> {
         try {
             // Note: ip-api returns 200 OK even on invalid requests.
-            const data = await this.http.get(`http://ip-api.com/json/${ip}`).toPromise();            
+            const data = await this.http.get(`http://ip-api.com/json/${ip}`).toPromise();    
+            console.log(data.data);
             const point = {
-                x: data['data'].lon,
-                y: data['data'].lat,
+                lat: data['data'].lat,
+                lng: data['data'].lon,
             };
             return point;
         }
