@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, EntityManager } from 'typeorm';
 import { MeteoStation } from '@/entities/meteo-station.entity';
-import { Coordinates } from '@/models/coordinates.model';
+import { Coordinates } from '@/interfaces/coordinates.interface';
 
 @Injectable()
 export class MeteoStationService {

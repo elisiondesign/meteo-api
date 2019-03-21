@@ -1,6 +1,7 @@
-import { Controller, Get, Req } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { GeoLocateService } from '@/services/geo-locate.service';
 import { MeteoStationService } from '@/services/meteo-station.service';
+import NearestStations from '@/interfaces/nearest-stations.interface';
 
 @Controller()
 export class AppController {
@@ -15,7 +16,8 @@ export class AppController {
   }
 
   @Get("nearest")
-  async getNearest() {
-    return await this.meteoService.findNearest({ lat: 50.00, lng: 14.35 }, 10000);
+  async getNearest(@Query() query: NearestStations) {
+    const location = await this.geoService.getCoordinates();
+    return await this.meteoService.findNearest(location, 10000);
   }
 }

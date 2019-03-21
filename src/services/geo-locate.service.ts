@@ -1,5 +1,5 @@
 import { Injectable, HttpService } from '@nestjs/common';
-import { Coordinates } from '@/models/coordinates.model';
+import { Coordinates } from '@/interfaces/coordinates.interface';
 import { CacheService } from './cache.service';
 
 @Injectable()
