@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, Index } from 'typeorm';
 import { Point } from '@/models/point.model';
-@Entity("meteo_stations")
+@Entity("meteo_data")
 export class MeteoStation {
     @PrimaryGeneratedColumn()
     id: number;

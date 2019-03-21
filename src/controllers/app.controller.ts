@@ -11,6 +11,6 @@ export class AppController {
 
   @Get()
   async getHello() {
-    return await this.geoService.locateIp('');    
+    return await this.geoService.locateIp();
   }
 }
