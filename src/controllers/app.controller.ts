@@ -1,16 +1,14 @@
 import { Controller, Get, Req } from '@nestjs/common';
-import { MeteoStationService } from '../services/meteo-station.service';
 import { GeoLocateService } from '@/services/geo-locate.service';
 
 @Controller()
 export class AppController {
-  constructor(
-    private readonly meteoService: MeteoStationService,
+  constructor(    
     private readonly geoService: GeoLocateService
   ) { }
 
   @Get()
-  async getHello() {
+  async main() {
     return await this.geoService.locateIp();
   }
 }

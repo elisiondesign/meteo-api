@@ -1,22 +1,27 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
-import { MeteoStationService } from '../services/meteo-station.service';
+import { GeoLocateService } from '@/services/geo-locate.service';
 
 describe('AppController', () => {
   let appController: AppController;
+  let geoService: GeoLocateService;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [MeteoStationService],
+      providers: [
+        {
+          provide: GeoLocateService,
+          useValue: {},
+        }
+      ],
     }).compile();
-
+    geoService = app.get<GeoLocateService>(GeoLocateService);
     appController = app.get<AppController>(AppController);
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
-    });
+  it('should be defined', () => {
+    expect(appController).toBeDefined();
   });
+
 });

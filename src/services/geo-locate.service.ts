@@ -10,7 +10,7 @@ export class GeoLocateService {
     async locateIp(ip: string = ''): Promise<Coordinates> {
         try {
             // Note: ip-api returns 200 OK even on invalid requests.
-            const data = await this.http.get(`http://ip-api.com/json/${ip}`).toPromise();    
+            const data = await this.http.get(`http://ip-api.com/json/${ip}`).toPromise();
             console.log(data.data);
             const point = {
                 lat: data['data'].lat,
@@ -22,5 +22,6 @@ export class GeoLocateService {
             throw new Error('IP location service request failed.');
         }
     }
+    
 
 }
