@@ -9,6 +9,6 @@ export class AppController {
 
   @Get()
   async main() {
-    return await this.geoService.locateIp();
+    return await this.geoService.getCoordinates();
   }
 }
