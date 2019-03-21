@@ -12,11 +12,11 @@ export class AppController {
 
   @Get()
   async apiRoot() {
-    return await this.geoService.getCoordinates();
+    return "Meteo stations API."
   }
 
   @Get("nearest")
-  async getNearest(@Query() query: NearestStations) {
+  async getNearest(@Query() query: NearestStations) {    
     const location = await this.geoService.getCoordinates();
     return await this.meteoService.findNearest(location, 10000);
   }
