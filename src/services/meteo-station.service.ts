@@ -19,7 +19,10 @@ export class MeteoStationService {
     }
 
     async findNearest(gpsLocation: Coordinates, radius: number): Promise<MeteoStation[]> {
-        return await this.em.query(`select * from meteo_stations where ST_Distance_Sphere(location,ST_SRID(POINT(50.0000,14.35000), 4326)) < ${radius};`) as MeteoStation[];
+        return await this.em.query(
+            `select * from meteo_stations where ST_Distance_Sphere(location,ST_SRID(POINT(?,?),4326)) < ?;`,
+            [gpsLocation.lat, gpsLocation.lng, radius]
+        ) as MeteoStation[];
     }
 
 }
