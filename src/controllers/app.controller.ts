@@ -17,7 +17,7 @@ export class AppController {
 
   @Get("nearest")
   async getNearest(@Query() query: NearestStations) {
-    const location = await this.geoService.getCoordinates();
+    const location = await this.geoService.getIpLocation();
     return await this.meteoService.findNearest(location, query.radius);
   }
 }

@@ -9,7 +9,7 @@ export class GeoLocateService {
         private readonly cache: CacheService,
     ) { }
 
-    async getCoordinates(ip: string = ''): Promise<Coordinates> {
+    async getIpLocation(ip: string = ''): Promise<Coordinates> {
         const cachedValue = this.cache.get(ip) as Coordinates;
         if (cachedValue) {            
             return cachedValue;
