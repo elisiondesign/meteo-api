@@ -24,8 +24,7 @@ export class MeteoStationService {
         const result = await this.em.query(
             `select *, ST_Distance_Sphere(location,ST_SRID(POINT(?,?),4326)) as distance from meteo_data having distance  < ?;`,
             [geoLocation.lat, geoLocation.lng, radius]
-        ) as MeteoStation[];
-        console.log(Object.keys(sort)[0], sort[0]);
+        ) as MeteoStation[];        
         return orderBy(result, Object.keys(sort), Object.values(sort));
     }
 }
