@@ -11,14 +11,14 @@ export class AppController {
   ) { }
 
   @Get()
-  async apiRoot() {
-    return "Meteo stations API."
+  async apiRoot() {    
+      return await this.meteoService.findAll();    
   }
 
   @Get("nearest")
   async getNearest(@Query() query: NearestStations) {
+
     let location = { lat: query.lat, lng: query.lng };
-    
     if (location.lat === undefined || location.lng === undefined) {
       location = await this.geoService.getIpLocation();
     }
