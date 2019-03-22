@@ -1,80 +1,98 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
 
-# meteo-api
+# Meteo-api
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Meteo API is an example application allowing to select nearest meteo stations using 
+geo IP or location and filter the results.
 
-## Questions Collection [/questions]
+## Meteo Stations [/]
 
-### List All Questions [GET]
+### List All Stations [GET]
+
+Simple request to list all stations available and their location.
 
 + Response 200 (application/json)
 
         [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
+           {
+              "id":531801,
+              "name":"1-Barrandov",
+              "technology":"Boschung",
+              "lat":50.03993,
+              "lng":14.405042,
+              "airTemperature":13.01,
+              "alarm":false,
+              "devPoint":-2.59,
+              "district":null,
+              "freezTemperature":0,
+              "gid":null,
+              "humidity":33.81,
+              "lastUpdated":null,
+              "mark":null,
+              "prec":2,
+              "prectype":2,
+              "prefix":null,
+              "roadTemperature":22.34,
+              "roadWet":null,
+              "sgid":1,
+              "spray":null,
+              "sprayProgram":"0",
+              "street":null,
+              "tankLevel":"75.85",
+              "tmsAlarm":false,
+              "windSpeed":0.83,
+              "windDirection":175
+           }
         ]
+        
+## Nearest Stations Collection [/nearest{?radius,lat,lng,filter}]
 
-### Create a New Question [POST]
+Allows to get stations in defined radius and location. If location is not specified, api searches location according to users ip.
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
 
-+ Request (application/json)
+### Filter stations [GET]
++ Parameters
+    + radius (optional) - Searched radius in meters
+    + lat (optional) - Latitude coordinate
+    + lng (optional) - Longtitude coordinate
+    + filter (optional) - Usage filter[param]=value. Possible params are [ distance, airTemperature, humidity, roadTemperature, windSpeed]. Possible values are [asc, desc].
 
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
 
-    + Headers
-
-            Location: /questions/2
-
-    + Body
-
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
+        [
+           {
+              "airTemperature":11.3,
+              "alarm":0,
+              "devPoint":-3.44,
+              "district":null,
+              "freezTemperature":0,
+              "gid":null,
+              "humidity":35.5,
+              "id":531808,
+              "lastUpdated":"1553165632000",
+              "lat":50.09226,
+              "lng":14.533048,
+              "mark":null,
+              "name":"8-Kyje",
+              "prec":0,
+              "prectype":0,
+              "prefix":null,
+              "roadTemperature":23.19,
+              "roadWet":null,
+              "sgid":1,
+              "spray":null,
+              "sprayProgram":null,
+              "street":null,
+              "tankLevel":null,
+              "technology":"Boschung",
+              "tmsAlarm":0,
+              "windDirection":100,
+              "windSpeed":0.66,
+              "location":{
+                 "x":50.09226,
+                 "y":14.533048
+              },
+              "distance":2637.929706708863
+           }
+        ]
