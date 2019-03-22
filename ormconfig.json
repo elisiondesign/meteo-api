@@ -9,5 +9,5 @@
     ],
     "database": "meteo-api",
     "sync": false,
-    "logging": true
+    "logging": false
 }
