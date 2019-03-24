@@ -11,28 +11,32 @@ export class GeoLocateService {
 
     async getIpLocation(ip: string = ''): Promise<Coordinates> {
         const cachedValue = this.cache.get(ip) as Coordinates;
-        if (cachedValue) {            
+        if (cachedValue) {
             return cachedValue;
         }
         else {
-            const coordinates = await this.locateIp();
+            const coordinates = await this.locateIp(ip);
             this.cache.set(ip, coordinates);
             return coordinates;
         }
     }
 
-    private async locateIp(ip: string = ''): Promise<Coordinates> {        
+    private async locateIp(ip: string = ''): Promise<Coordinates> {
         try {
             // Note: ip-api returns 200 OK even on invalid requests.
-            const data = await this.http.get(`http://ip-api.com/json/${ip}`).toPromise();            
+            const data = await this.http.get(`http://ip-api.com/json/${ip}`).toPromise();
+            if (data['data'].status === 'fail') {
+                throw new Error(data['data'].message);
+            }
             const point = {
                 lat: data['data'].lat,
                 lng: data['data'].lon,
             };
             return point;
         }
-        catch {
-            throw new Error('IP location service request failed.');
+        catch (e) {
+            const message = e !== undefined ? e : 'IP location service request failed.';
+            throw new Error(message);
         }
     }
 }

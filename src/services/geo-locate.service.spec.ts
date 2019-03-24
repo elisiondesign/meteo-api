@@ -14,11 +14,11 @@ describe('GeoLocateService', () => {
         GeoLocateService,
         {
           provide: HttpService,
-          useValue: {},
+          useValue: ,
         },
         {
           provide: CacheService,
-          useValue: {},
+          useClass: CacheService,
         },
       ],
     }).compile();
