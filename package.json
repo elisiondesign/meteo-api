@@ -64,6 +64,6 @@
     "testEnvironment": "node",
     "moduleNameMapper": {
       "@/(.*)$": "<rootDir>/$1"
-    }
+    }    
   }
 }

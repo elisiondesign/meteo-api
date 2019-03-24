@@ -1,10 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { GeoLocateService } from '@/services/geo-locate.service';
+import { MeteoStationService } from '@/services/meteo-station.service';
 
 describe('AppController', () => {
   let appController: AppController;
   let geoService: GeoLocateService;
+  let meteoService: MeteoStationService;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
@@ -13,7 +15,11 @@ describe('AppController', () => {
         {
           provide: GeoLocateService,
           useValue: {},
-        }
+        },
+        {
+          provide: MeteoStationService,
+          useValue: {},
+        },
       ],
     }).compile();
     geoService = app.get<GeoLocateService>(GeoLocateService);

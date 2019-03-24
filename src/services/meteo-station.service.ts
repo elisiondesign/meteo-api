@@ -22,7 +22,7 @@ export class MeteoStationService {
     async findNearest(geoLocation: Coordinates, radius: number = 1000, sort: { distance: "asc" },
     ): Promise<MeteoStation[]> {
         const result = await this.em.query(
-            `select *, ST_Distance_Sphere(location,ST_SRID(POINT(?,?),4326)) as distance from meteo_data having distance  < ?;`,
+            `select *, ST_Distance_Sphere(location,ST_SRID(POINT(?,?),4326)) as distance from meteo_stations having distance  < ?;`,
             [geoLocation.lat, geoLocation.lng, radius]
         ) as MeteoStation[];        
         return orderBy(result, Object.keys(sort), Object.values(sort));

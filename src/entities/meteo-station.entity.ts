@@ -1,7 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, Index } from 'typeorm';
 import { Coordinates } from '@/interfaces/coordinates.interface';
-import { ColumnMetadata } from 'typeorm/metadata/ColumnMetadata';
-@Entity("meteo_data")
+@Entity("meteo_stations")
 export class MeteoStation {
     @PrimaryGeneratedColumn()
     id: number;
