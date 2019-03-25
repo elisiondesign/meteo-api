@@ -15,8 +15,8 @@ $ npm install
 ```
 
 ### Database
-
-Create database named `meteo-api`.
+Recommended database is `mysql v8.0.15`.
+Create database named `meteo-api`. 
 
 ```bash
 $ mysql -u username -p meteo-api < meteo-api.sql
