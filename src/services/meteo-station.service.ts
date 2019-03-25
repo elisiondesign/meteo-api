@@ -14,11 +14,20 @@ export class MeteoStationService {
         @Inject(EntityManager)
         private readonly em: EntityManager,
     ) { }
-
+    /**
+     * Find all available meteo stations.
+     * @returns Array of meteo stations.
+     */
     async findAll(): Promise<MeteoStation[]> {
         return await this.stationRepository.find();
     }
 
+    /**
+     * Returns nearest meteo stations and its values.
+     * @param geoLocation Coordinates point from which we measure radius
+     * @param radius Radius in meters in which to look for stations
+     * @param sort Sort result according to a field. usage: {field_name: <asc|desc>}
+     */
     async findNearest(geoLocation: Coordinates, radius: number = 1000, sort: { distance: "asc" },
     ): Promise<MeteoStation[]> {
         const result = await this.em.query(

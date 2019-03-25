@@ -8,7 +8,11 @@ export class GeoLocateService {
         private readonly http: HttpService,
         private readonly cache: CacheService,
     ) { }
-
+    /**
+     * Get ip adderss location. Check for value in cache and if not found calls the ip-api.
+     * @param ip ip address to locate
+     * @returns Lat/lng associated connected with given ip
+     */
     async getIpLocation(ip: string = ''): Promise<Coordinates> {
         const cachedValue = this.cache.get(ip) as Coordinates;
         if (cachedValue) {
