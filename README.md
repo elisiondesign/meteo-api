@@ -6,6 +6,9 @@ Meteo-api example app.
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript repository.
 
+## API Documentation
+API documentation can be found on [Apiary](https://meteoapi1.docs.apiary.io/).
+
 ## Installation
 
 ### Frontend
